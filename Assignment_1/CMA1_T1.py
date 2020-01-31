@@ -1,14 +1,16 @@
-#%%
 """
 TIF320 - Computational materials and molecular physics
 Assignment 1
 Task 1
+
+Finished 2020-31-01
 """
 import numpy as np
-from scipy.linalg import eigh, inv
+from scipy.linalg import eigh
 from numpy import pi, sqrt, exp
 import matplotlib.pyplot as ppl
 
+#%%
 # function for genarating elements of the Q-matrix 
 def Q_prqs(a_p, a_r, a_q, a_s):
     return 2*pi**(5/2)/((a_p+a_q)*(a_r+a_s)*sqrt(a_p+a_q+a_r+a_s))
@@ -24,6 +26,7 @@ def h_pq(a_p, a_q):
     t_2 = 4*pi/alpha
     return t_1 - t_2
 
+#%%
 a_1 = 0.297104   
 a_2 = 1.236745   
 a_3 = 5.749982   
@@ -53,7 +56,8 @@ h = np.zeros([4, 4])
 for p in range(4):
     for q in range(4):
         h[p,q] = h_pq(a[p], a[q])
-        
+
+#%%       
 # initial values for the coefficients C_p
 C_1 = 1
 C_2 = 1
@@ -94,7 +98,7 @@ for i in range(i_max):
         print('Ground state energy: ' + str(E_g))
         break
 
-
+#%%
 # create wave-function
 def phi(x, C, a):
     return C[0]*exp(-a[0]*x**2) + C[1]*exp(-a[1]*x**2) + C[2]*exp(-a[2]*x**2) + C[3]*exp(-a[3]*x**2)
