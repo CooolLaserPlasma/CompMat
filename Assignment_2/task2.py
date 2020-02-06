@@ -26,7 +26,9 @@ NaCluster = Atoms([Atom('Na', (0,0,0)),
 		   Atom('Na', (0,0,d)),
 		   Atom('Na', (d,d,0)),
 		   Atom('Na', (0,d,d))])
-#view(NaCluster)
+
+NaCluster.center(vacuum=10)
+view(NaCluster)
 
 # initialize a calculator
 
@@ -51,20 +53,20 @@ NaCluster = Atoms([Atom('Na', (0,0,0)),
 # same bu with "atoms.center()" gives
 # ValueError: GPAW requires 3 lattice vectors.  Your system has 0.
 # same but with "atom.center(vacuum=5)" seems to work!! :)
-d = 0.74
-a = 6.0
+#d = 0.74
+#a = 6.0
 
-atoms = Atoms('H2',
-              positions=[(0, 0, 0),
-                         (0, 0, d)])
-atoms.center(vacuum=5)
+#atoms = Atoms('H2',
+#              positions=[(0, 0, 0),
+#                         (0, 0, d)])
+#atoms.center(vacuum=5)
 
-calc = GPAW(nbands=2, txt='h2.txt')
-atoms.set_calculator(calc)
+#calc = GPAW(nbands=2, txt='h2.txt')
+#atoms.set_calculator(calc)
 
-E = atoms.get_potential_energy()
-print(E)
-calc.write('h2.gpw')   # added this from the code  below
+#E = atoms.get_potential_energy()
+#print(E)
+#calc.write('h2.gpw')   # added this from the code  below
 
 ###################################################
 # part of code from GPAW documantation: "Calculation of atomization energies"
