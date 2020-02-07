@@ -2,7 +2,9 @@
 TIF320 - Computational materials and molecular physics
 Assignment 1
 Task 1
-testfile
+
+testfile 
+latest update: 2020-01-31
 """
 import numpy as np
 from scipy.linalg import eigh, inv

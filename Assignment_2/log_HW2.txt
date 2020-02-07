@@ -1,0 +1,2 @@
+2020-01-05
+run the initialization file for 6, 7, 8, atoms. stored the created files in separate maps.

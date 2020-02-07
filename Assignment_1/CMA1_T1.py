@@ -3,7 +3,8 @@ TIF320 - Computational materials and molecular physics
 Assignment 1
 Task 1
 
-Finished 2020-31-01
+Finished! :)
+latest update: 2020-01-31
 """
 import numpy as np
 from scipy.linalg import eigh

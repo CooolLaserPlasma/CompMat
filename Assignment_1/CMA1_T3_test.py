@@ -2,6 +2,9 @@
 TIF320 - Computational materials and molecular physics
 Assignment 1
 Task 3
+
+testfile 
+latest update: 2020-01-31
 """
 import numpy as np
 from numpy import pi, sqrt, exp
@@ -58,7 +61,7 @@ no errors, you should find −0.499 278 hartree, which is amazingly good if you
 realise that only four functions have been taken into account.
 """
 E_gH = -0.5
-#%%
+#%% Making a function of this task
 def func(r):
     return -1/r   
 
@@ -69,7 +72,9 @@ h = r[1]-r[0]
 
 f = func(ri)
 
-
+"""
+Functin OK!! :) 2020-01-31
+"""
 def task3(f, r, h, N):
     def M(n,h,v):
         out = -2*np.identity(n)+np.diag(np.ones(n-1),1)+np.diag(np.ones(n-1),-1)
@@ -94,7 +99,7 @@ E_0, phi2 = task3(f, ri, h, N)
 #phi2 = phi2/norm
 
 ppl.figure()
-ppl.plot(ri, phi, label='numerical')
+#ppl.plot(ri, phi, label='numerical')
 ppl.plot(ri, phi2, '--', label='from task3 func')
 ppl.legend()
 ppl.show()

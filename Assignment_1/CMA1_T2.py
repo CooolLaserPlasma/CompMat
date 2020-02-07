@@ -3,7 +3,7 @@ TIF320 - Computational materials and molecular physics
 Assignment 1
 Task 2
 
-testfile 
+Finished! :)
 latest update: 2020-01-31
 """
 import numpy as np
@@ -37,39 +37,5 @@ V_analytic = 1/ri - (1+1/ri)*np.exp(-2*ri)    # Hartree potential
 ppl.figure()
 ppl.plot(ri, U/ri, label='numerical')
 ppl.plot(ri, V_analytic, '--', label='analytic')
-ppl.legend()
-ppl.show()
-
-
-#%% Making a function of this task
-
-def n_s(r, h):                         # need this to run function
-    n = np.exp(-2*r)                   # ground state electron density for hydrogen atom
-    norm = 4*pi*h*(r**2).dot(n)
-    return n/norm
-
-a = 0 
-b = 10
-N = 1000
-r = np.linspace(a,b,N)
-ri = r[1:]
-h = r[1]-r[0]
-
-"""
-function OK! (2020-01-31)
-"""
-def task2(n_s, r, h):
-    f = -4*pi*r*n_s  
-    M = -2*np.identity(N-1) + np.diag(np.ones(N-2),1)+np.diag(np.ones(N-2),-1)
-    U_0 = h**2*inv(M).dot(f)  
-    return U_0 + (r/r[-1])
-
-
-
-U_2 = task2(n_s(ri, h), ri, h)
-
-ppl.figure()
-#ppl.plot(ri, U/ri, label='numerical')
-ppl.plot(ri, U_2/ri, '--', label='analytic')
 ppl.legend()
 ppl.show()

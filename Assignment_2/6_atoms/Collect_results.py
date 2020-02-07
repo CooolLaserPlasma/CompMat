@@ -12,4 +12,4 @@ atoms = traj[0] 				# Atom configuration with lowest energy
 
 view(atoms)
 
-#write('least_energy_traj_Na6.xyz', atoms)
+# write('least_energy_traj_Na6.xyz', atoms)       # Write atoms object to .xyz file
