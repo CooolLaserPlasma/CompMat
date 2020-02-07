@@ -10,6 +10,6 @@ from ase.io import write
 traj = Trajectory('all_candidates.traj') 	# traj is sorted by energy
 atoms = traj[0] 				# Atom configuration with lowest energy
 
-view(atoms)
+#view(atoms)
 
-#write('least_energy_traj_Na6.xyz', atoms)
+write('least_energy_traj_Na7.xyz', atoms)
