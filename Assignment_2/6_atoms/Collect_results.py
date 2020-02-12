@@ -1,46 +1,36 @@
 #!/usr/bin/env python3
 
 from ase.visualize import view
-from ase.io.trajectory import Trajectory
-from ase.io import write
-import numpy as np
-
-import matplotlib.pyplot as plt
-#%%
-#########################################################
-
-
-#traj = Trajectory('all_candidates.traj') 	# traj is sorted by energy
-#atoms = traj[0] 				# Atom configuration with lowest energy
-
-#view(atoms)
-
-# write('least_energy_traj_Na6.xyz', atoms)          # Write atoms object to .xyz file
-
-########################################################
+#from ase.io.trajectory import Trajectory
+#from ase.io import write
 from ase.db import connect
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+#%%
 db = connect('gadb.db')
 
-# sort by energy and only include relaxed candidates
-atoms2 = db.select(sort='energy', relaxed=1)         # atoms2 is a generator object
+# sort db by energy and only include relaxed candidates
+atoms = db.select(sort='energy', relaxed=1)         # atoms is a generator object
 
-atoms2_sorted_list=[] # list that will contain atoms objects sorted by energy 
+atoms_sorted_list=[] # list that will contain atoms objects sorted by energy 
 
-for atom in atoms2:
-        atoms2_sorted_list.append(atom.toatoms())
+for atom in atoms:
+        atoms_sorted_list.append(atom.toatoms())
 
 
 # get diffrences in energy)
-energy = np.zeros(len(atoms2_sorted_list))
+energy = np.zeros(len(atoms_sorted_list))
 
-for i in range(len(atoms2_sorted_list)):
-    energy[i] = atoms2_sorted_list[i].get_potential_energy()
+for i in range(len(atoms_sorted_list)):
+    energy[i] = atoms_sorted_list[i].get_potential_energy()
 
-
-diffs = abs(energy - np.roll(energy, -1))
-diffs = diffs[0:-1]  # remove last entr since this is the difference between lowest and highest energy
+diffs = abs(energy - np.roll(energy, -1)) # diffrences in energy between adjecent configurations
+diffs = diffs[0:-1]  # remove last entry since this is the difference between lowest and highest energy
 
 #%%
+# plot energy differences
 """
 where the energy difference is larger than about 0.03 there seems to be a new structure
 """
@@ -53,30 +43,18 @@ ax.plot([0, 100], [0.03, 0.03], '--')
 
 
 #%%
-# try with lists instead??
-# redo diffs as a list: diffs2 = [i for i in diffs]
-# pick out indices: index = [diffs2.index(i) for i in diffs2 if i > 0.02]
 
-diffs_list = [i for i in diffs]
-index = [diffs_list.index(i) for i in diffs_list if i > 0.03] 
+diffs_list = [i for i in diffs]   # make diffs as a list 
+index = [diffs_list.index(i) for i in diffs_list if i > 0.03] # pick out indices for diffs > 0.03
 """
-index contains indices of "atoms2_sorted_list" where a new configuration is
+index contains indices of "atoms_sorted_list" where a new configuration is
 index[0]+1 will get the first new configuration
 """
-Config1 = atoms2_sorted_list[index[1]]
-Config2 = atoms2_sorted_list[index[1]+1]
+lowest_energy_structure = atoms_sorted_list[0]
+snd_lowest_energy_structure = atoms_sorted_list[index[0]+1]
 
+view(lowest_energy_structure)
+view(snd_lowest_energy_structure)
 
-#%%
-Na6_lowest = atoms2_sorted_list[2]
-#view(Na6_lowest)
-
-
-
-###############
-Na6_lowest2 = db.get('id=74').toatoms()
-
-
-#view(Na6_lowest2)
 
 
