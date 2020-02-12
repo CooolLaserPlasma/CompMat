@@ -2,7 +2,7 @@
 
 from ase.visualize import view
 #from ase.io.trajectory import Trajectory
-#from ase.io import write
+from ase.io import write
 from ase.db import connect
 
 import numpy as np
@@ -39,7 +39,7 @@ ax.plot(diffs)
 ax.set_xlabel('"Canditade index"', fontsize=15)
 ax.set_ylabel('Energy difference (eV)', fontsize=15)
 ax.plot([0, 100], [0.03, 0.03], '--')
-#fig.savefig('Energydifferences.png')
+#fig.savefig('Energydifferences_Na6.png')
 
 
 #%%
@@ -51,10 +51,20 @@ index contains indices of "atoms_sorted_list" where a new configuration is
 index[0]+1 will get the first new configuration
 """
 lowest_energy_structure = atoms_sorted_list[0]
+E_lowest = lowest_energy_structure.get_potential_energy()
+
 snd_lowest_energy_structure = atoms_sorted_list[index[0]+1]
+E_snd_lowest = snd_lowest_energy_structure.get_potential_energy()
 
-view(lowest_energy_structure)
-view(snd_lowest_energy_structure)
+print('Energy for most stabel structure: ' + str(E_lowest))
+print('Energy for 2nd most stabel structure: ' + str(E_snd_lowest))
 
+#%%
+#view(lowest_energy_structure)
+#view(snd_lowest_energy_structure)
+
+# save structures as .xyz files
+#write('lowest_energy_struc_Na6.xyz', lowest_energy_structure)
+#write('2nd_lowest_energy_struc_Na6.xyz', snd_lowest_energy_structure)
 
 
