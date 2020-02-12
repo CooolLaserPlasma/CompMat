@@ -16,7 +16,7 @@ from scipy.linalg import eigh
 def func(r):            # function containing diffrent potential contributions
     return -1/r   
 
-def wavefunc_H(r, h):   # ground state wave function of hydrogen
+def wavefunc_H(r, h):   # ground state wave function of hydrogen (normalized)
     wavef = exp(-r)
     norm = sqrt(4*pi*wavef.dot(wavef)*h) 
     return wavef/norm
@@ -35,9 +35,8 @@ A = M(N-1, h, func(ri))
 w, v = eigh(A, eigvals=(0,0))
 u = v.reshape(N-1)
 
-n_s = u**2/(4*pi)
-phi = sqrt(n_s)/ri
-norm = sqrt(4*pi*phi.dot(phi)*h) 
+phi = u/ri
+norm = sqrt(4*pi*phi.dot(phi)*h)
 phi = phi/norm
 
 phi_analytic = wavefunc_H(ri, h)

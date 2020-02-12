@@ -29,11 +29,10 @@ def task3(f, r, h, N):
     w, v = eigh(A, eigvals=(0,0))
     u = v.reshape(N-1)
 
-    n_s = u**2/(4*pi)
-    phi = sqrt(n_s)/r
-    norm = sqrt(4*pi*phi.dot(phi)*h) 
+    phi = u/ri
+    norm = sqrt(4*pi*phi.dot(phi)*h)
     phi = phi/norm
-    return (w, phi)
+    return (w, phi, u)
 
 # ground state electron density for hydrogen atom
 def n_g_H(r, h):
@@ -41,8 +40,10 @@ def n_g_H(r, h):
     norm = 4*pi*h*(r**2).dot(n)
     return n/norm
 
+def energy(u,v,w,h):
+    return 2*w-2*np.sum(h*u**2*v)
 #%%
-N = 10
+N = 100
 r = np.linspace(0, 10, N)
 ri = r[1:]
 h = r[1]-r[0]
@@ -50,9 +51,10 @@ h = r[1]-r[0]
 # guess some density
 n_s = n_g_H(ri, h) 
 # Calculate initial values
-phi = sqrt(n_s)
-f = -1/ri + task2(n_s, ri, h, N)
-E_0, phi = task3(f, ri, h, N)  
+#phi = sqrt(n_s)
+#f = -1/ri + task2(n_s, ri, h, N)
+#E_0, phi, u = task3(f, ri, h, N)  
+E_0 = 1
 
 #%%
 eV = 1/27.211     # Hartree
@@ -66,8 +68,10 @@ for i in range(i_max):
     # create input function for task3 as
     f = -1/ri + V_sH
     # solve eigenv.p as in task 3 V_sH=V_H --> u, e
-    E_0_temp, phi = task3(f, ri, h, N)                    
+    w, phi, u = task3(f, ri, h, N)             
     n_s = abs(phi)**2
+    E_0_temp = energy(u, V_sH, w, h)
+    print(E_0_temp)
     # compare energy with previous energy  
     E_dif = abs(E_0 - E_0_temp)
     E_0 = E_0_temp
@@ -78,8 +82,7 @@ for i in range(i_max):
         break
 
 
-#%%
-        
+#%%    
 
 ppl.figure()
 ppl.plot(ri, phi, label='numerical')
