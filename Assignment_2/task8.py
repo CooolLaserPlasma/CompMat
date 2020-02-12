@@ -22,7 +22,12 @@ from ase.db import connect
 d = 3
 
 NaCluster = Atoms([Atom('Na', (0,0,0)),
-         	   Atom('Na', (d,0,0))])
+                   Atom('Na', (d,0,0)),
+                   Atom('Na', (0,d,0)),
+                   Atom('Na', (0,0,d)),
+                   Atom('Na', (d,d,0)),
+                   Atom('Na', (0,d,d))])
+
 
 NaCluster.center(vacuum=5)		# Create surrounding
 #view(NaCluster)
@@ -43,3 +48,7 @@ def relax(Cluster_to_relax, mod, name):
     print(E)
     calc.write(str2)
 
+
+
+relax(NaCluster, 'lcao', 'hej')
+ 

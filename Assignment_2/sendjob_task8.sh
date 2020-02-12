@@ -12,6 +12,5 @@ module purge
 module load intel/2019a GPAW ASE
 
 
-mpirun gpaw-python GPAW_relax.py
-
+mpirun gpaw-python task8.py
 
