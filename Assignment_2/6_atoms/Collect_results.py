@@ -3,12 +3,12 @@
 from ase.visualize import view
 from ase.io.trajectory import Trajectory
 from ase.io import write
-
+import numpy as np
 #########################################################
 
 
-traj = Trajectory('all_candidates.traj') 	# traj is sorted by energy
-atoms = traj[0] 				# Atom configuration with lowest energy
+#traj = Trajectory('all_candidates.traj') 	# traj is sorted by energy
+#atoms = traj[0] 				# Atom configuration with lowest energy
 
 #view(atoms)
 
@@ -27,18 +27,21 @@ for atom in atoms2:
         atoms2_sorted_list.append(atom.toatoms())
 
 
-# get diffrences in energy
-diffs = []
+# get diffrences in energy)
+energy = np.zeros(len(atoms2_sorted_list))
 
-for i in range(len(atoms2_sorted_list)-1):
-    energy = atoms2_sorted_list[i].get_potential_energy()
-    energy2 = atoms2_sorted_list[i+1].get_potential_energy()
-    diffs.append(energy-energy2)
+for i in range(len(atoms2_sorted_list)):
+    energy[i] = atoms2_sorted_list[i].get_potential_energy()
 
+
+print(len(energy))
+diffs = energy - np.roll(energy, -1)
 #print(diffs)
 
+
+
 Na6_lowest = atoms2_sorted_list[2]
-view(Na6_lowest)
+#view(Na6_lowest)
 
 
 
