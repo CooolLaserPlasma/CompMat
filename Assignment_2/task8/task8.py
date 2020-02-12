@@ -28,13 +28,13 @@ def relax(Cluster_to_relax, mod, name):
     calc = GPAW(mode=mod, txt=name_of_txt_file)  	
     Cluster_to_relax.set_calculator(calc)
     
-    #E = Cluster_to_relax.get_potential_energy()
-    calc.write(name_of_gpw_file)
+    E = Cluster_to_relax.get_potential_energy()
+    #calc.write(name_of_gpw_file)
 
 
 # define parameters
-mode_of_GPAW = 'lcao'
-run_nr = 1
+mode_of_GPAW = PW()
+run_nr = 2
 
 # relax structures
 relax(Na6_lowest, mode_of_GPAW, 'struc1_run'+str(run_nr))
@@ -42,15 +42,16 @@ relax(Na6_2nd_lowest, mode_of_GPAW, 'struc2_run'+str(run_nr))
 
 
 # write result to database
-db.write(Na6_lowest, structure=1, GPAWmode=mode_of_GPAW, run=run_nr)
-db.write(Na6_2nd_lowest, structure=2, GPAWmode=mode_of_GPAW, run=run_nr)
+db.write(Na6_lowest, structure=1, GPAWmode=str(mode_of_GPAW), run=run_nr)
+db.write(Na6_2nd_lowest, structure=2, GPAWmode=str(mode_of_GPAW), run=run_nr)
 
 
 """
 run 1:
 mode = 'lcao'
 
-
+run 2:
+mode = PW()
 
 """
 
