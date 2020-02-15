@@ -14,10 +14,7 @@ from ase.db import connect
 Na6_lowest = read('christmas-tree.xyz')
 Na6_2nd_lowest = read('half-decahedron.xyz')
 
-E1 = Na6_2nd_lowest.get_potential_energy()
-print(E1)
 
-"""
 # Connect to database
 db = connect('t8db.db')
 
@@ -37,9 +34,8 @@ def relax(Cluster_to_relax, mod, exc, name):
     dyn.run(fmax=0.02)
     Cluster_to_relax.get_potential_energy()
     #calc.write(name_of_gpw_file)
-"""
 
-"""
+
 # define parameters
 mode_of_GPAW = 'lcao'
 mode_str = 'lcao'
@@ -55,7 +51,7 @@ relax(Na6_2nd_lowest, mode_of_GPAW, exchange, 'struc2_run'+str(run_nr))
 db.write(Na6_lowest, structure=1, GPAWmode=mode_str, xc=exchange, run=run_nr)
 db.write(Na6_2nd_lowest, structure=2, GPAWmode=mode_str, xc=exchange, run=run_nr)
 
-"""
+
 
 """
 run 1:
