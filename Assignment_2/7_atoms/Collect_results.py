@@ -56,8 +56,11 @@ E_lowest = lowest_energy_structure.get_potential_energy()
 snd_lowest_energy_structure = atoms_sorted_list[index[0]+1]
 E_snd_lowest = snd_lowest_energy_structure.get_potential_energy()
 
+E_diff = abs(E_lowest-E_snd_lowest)
+
 print('Energy for most stabel structure: ' + str(E_lowest))
 print('Energy for 2nd most stabel structure: ' + str(E_snd_lowest))
+print('Energy difference: ' + str(E_diff))
 
 #%%
 #view(lowest_energy_structure)

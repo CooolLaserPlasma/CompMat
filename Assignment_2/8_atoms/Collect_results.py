@@ -39,7 +39,7 @@ ax.plot(diffs)
 ax.set_xlabel('"Canditade index"', fontsize=15)
 ax.set_ylabel('Energy difference (eV)', fontsize=15)
 ax.plot([0, 100], [0.03, 0.03], '--')
-#fig.savefig('Energydifferences_Na7.png')
+#fig.savefig('Energydifferences_Na8.png')
 
 
 #%%
@@ -50,14 +50,19 @@ index = [diffs_list.index(i) for i in diffs_list if i > 0.03] # pick out indices
 index contains indices of "atoms_sorted_list" where a new configuration is
 index[0]+1 will get the first new configuration
 """
+#view(atoms_sorted_list[index[1]+1])
+
 lowest_energy_structure = atoms_sorted_list[0]
 E_lowest = lowest_energy_structure.get_potential_energy()
 
-snd_lowest_energy_structure = atoms_sorted_list[index[0]+1]
+snd_lowest_energy_structure = atoms_sorted_list[index[1]+1]
 E_snd_lowest = snd_lowest_energy_structure.get_potential_energy()
+
+E_diff = abs(E_lowest-E_snd_lowest)
 
 print('Energy for most stabel structure: ' + str(E_lowest))
 print('Energy for 2nd most stabel structure: ' + str(E_snd_lowest))
+print('Energy difference: ' + str(E_diff))
 
 #%%
 #view(lowest_energy_structure)
