@@ -30,7 +30,7 @@ def relax(Cluster_to_relax, mod, bas, exc, name):
     name_of_gpw_file = name + '.gpw'
     
     # Initialize calculator
-    calc = GPAW(setups={'Na': '1'}, h=0.25, occupations=FermiDirac(0.05), mode=mod, basis=bas, xc=exc, txt=name_of_txt_file)  	
+    calc = GPAW(setups={'Na': '1'}, h=0.20, mode=mod, basis=bas, xc=exc, txt=name_of_txt_file)  	
     Cluster_to_relax.set_calculator(calc)
     dyn = BFGS(Cluster_to_relax)
     dyn.run(fmax=0.02)
@@ -39,12 +39,12 @@ def relax(Cluster_to_relax, mod, bas, exc, name):
 
 
 # define parameters
-mode_of_GPAW = PW(200)
-mode_str = 'PW(200)'
+mode_of_GPAW ='fd'
+mode_str = 'fd'
 basis_set = 'dzp'
 exchange = 'PBE'
-fermi_dirac = 0.05
-run_nr = 8
+fermi_dirac = '-'
+run_nr = 10
 
 # relax structures
 relax(Na6_lowest, mode_of_GPAW, basis_set, exchange, 'struc1_run'+str(run_nr))
@@ -121,6 +121,20 @@ mode=PW(200)
 basis='dzp'
 xc='PBE'
 occupations=FermiDirac(0.05)
+
+run 9:
+setups={'Na': '1'}
+h=0.20
+mode=PW(350)
+basis='dzp'
+xc='PBE'
+
+run 10:
+setups={'Na': '1'}
+h=0.20
+mode='fd'
+basis='dzp'
+xc='PBE'
 """
 
 
