@@ -6,9 +6,9 @@
  |___|_|             
 
 User:   hallborn@hebbe2
-Date:   Thu Feb 20 19:55:58 2020
+Date:   Thu Feb 20 22:51:03 2020
 Arch:   x86_64
-Pid:    30542
+Pid:    17181
 Python: 3.7.2
 gpaw:   /apps/Hebbe7/software/MPI/intel/2019.1.144-GCC-8.2.0-2.31.1/impi/2018.4.274/GPAW/19.8.1-Python-3.7.2/lib/python3.7/site-packages/gpaw
 _gpaw:  /apps/Hebbe7/software/MPI/intel/2019.1.144-GCC-8.2.0-2.31.1/impi/2018.4.274/GPAW/19.8.1-Python-3.7.2/lib/python3.7/site-packages/
@@ -27,4 +27,4 @@ Input parameters:
   symmetry: {point_group: False}
   xc: PBE
 
-Date: Thu Feb 20 19:55:58 2020
+Date: Thu Feb 20 22:51:04 2020
