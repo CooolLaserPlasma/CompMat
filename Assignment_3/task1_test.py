@@ -4,7 +4,7 @@ from ase import Atoms
 #from gpaw import GPAW, PW
 from ase.visualize import view
 from ase.io.trajectory import Trajectory
-from ase.io import read
+from ase.io import read, write
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -35,10 +35,18 @@ timestep = t[1]-t[0]   # timestep used in the AIMD simulation
 n = int(1/timestep)
 
 #%%
+
 config_nr = n               # n+7 has temp 347.5 (T_mean = 345.1)
 
 atoms = traj[config_nr]
 print(T[config_nr])
 view(atoms)
+
+
+#atoms_Na = read('water_Na.xyz')
+#view(atoms_Na)
+
+#%%
     
-Na_ion = Atom('Na', charge=1)
+#Na_ion = Atoms(Atom('Na', charge=1), (0,0,0))
+#write('Na_ion.xyz', Na_ion)
