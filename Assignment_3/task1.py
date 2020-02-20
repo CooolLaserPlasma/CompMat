@@ -3,22 +3,26 @@ from gpaw import GPAW
 from ase.io.trajectory import Trajectory
 from ase.io import read, write
 from ase.md.npt import NPT
-
+from ase.visualize import view
 from ase.units import fs, kB
+import numpy as np
 
 atoms = read('Na_in_water.xyz')
+#view(atoms)
+
 
 calc = GPAW(mode='lcao',
             xc='PBE',
             basis='dzp',
-            symmetry={'point-group': False},
+            symmetry={'point_group': False},
             charge=1,
             txt='gpawOutput.gpaw-out')
 
 atoms.set_calculator(calc)
 
-dyn = NPT(pfactor=None,
-          externalstress=0,
+dyn = NPT(atoms,
+	  pfactor=None,
+          externalstress=1,
           temperature=350*kB,
           timestep=0.5*fs,
           ttime=20*fs,
@@ -26,5 +30,6 @@ dyn = NPT(pfactor=None,
 
 trajectory = Trajectory('nptDyn.traj', 'w', atoms)
 dyn.attach(trajectory.write, interval=1)
+
 
 #dyn.run(10)

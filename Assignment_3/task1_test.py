@@ -17,6 +17,7 @@ t, E_tot, E_pot, E_kin, T = np.loadtxt(log, skiprows=1, unpack=True)
 
 
 mean_T = sum(T)/len(T)
+
 #%%
 fig, ax = plt.subplots(1, 2, figsize=(10, 4))
 ax[0].plot(t, T)
@@ -36,7 +37,7 @@ n = int(1/timestep)
 
 #%%
 
-config_nr = n               # n+7 has temp 347.5 (T_mean = 345.1)
+config_nr = n+100               # n+7 has temp 347.5 (T_mean = 345.1)
 
 atoms = traj[config_nr]
 print(T[config_nr])
@@ -50,3 +51,6 @@ view(atoms)
     
 #Na_ion = Atoms(Atom('Na', charge=1), (0,0,0))
 #write('Na_ion.xyz', Na_ion)
+
+
+

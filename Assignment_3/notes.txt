@@ -1,0 +1,36 @@
+2020-02-20
+fick följande när jag provkörde NPT biten i 'task1.py'
+WARNING: NPT: Setting the center-of-mass momentum to zero (was -1.14702 0.162764 -1.69999)
+
+körde på Hebbe ändå kl 18.32:)
+gick ej, fick samma meddelande...
+
+provade flytta in mitten på Na atomen innanför cuben
+samma felmeddelande...
+
+provade att ge externalstress en 3*3 matris med nollor
+erternalstress=np.zeros([3,3])
+fick följande:
+
+WARNING: NPT: Setting the center-of-mass momentum to zero (was -1.14702 0.162764 -1.69999)
+Traceback (most recent call last):
+  File "task1.py", line 28, in <module>
+    logfile='mdOutput.log')
+  File "/apps/Hebbe7/software/MPI/intel/2019.1.144-GCC-8.2.0-2.31.1/impi/2018.4.274/ASE/3.18.0-Python-3.7.2/lib/python3.7/site-packages/ase/md/npt.py", line 153, in __init__
+    self.set_stress(externalstress)
+  File "/apps/Hebbe7/software/MPI/intel/2019.1.144-GCC-8.2.0-2.31.1/impi/2018.4.274/ASE/3.18.0-Python-3.7.2/lib/python3.7/site-packages/ase/md/npt.py", line 181, in set_stress
+    if not self._issymmetric(stress):
+AttributeError: 'NPT' object has no attribute '_issymmetric'
+
+
+provade 
+externalstress=np.array([0,0,0,0,0,0]),
+fick:
+WARNING: NPT: Setting the center-of-mass momentum to zero (was -1.14702 0.162764 -1.69999)
+
+provade flytta ut Na atomen ordentligt från vattenmolekylerna
+samma meddelande
+
+
+
+
