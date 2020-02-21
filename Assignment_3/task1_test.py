@@ -37,12 +37,14 @@ n = int(1/timestep)
 
 #%%
 
-config_nr = n+100               # n+7 has temp 347.5 (T_mean = 345.1)
+config_nr = n               # n+7 has temp 347.5 (T_mean = 345.1)
 
 atoms = traj[config_nr]
 print(T[config_nr])
-view(atoms)
+#view(atoms)
 
+com = atoms.get_momenta().sum(0)
+print(np.sqrt(np.sum(com*com)))
 
 #atoms_Na = read('water_Na.xyz')
 #view(atoms_Na)

@@ -10,10 +10,9 @@ import numpy as np
 atoms = read('Na_in_water.xyz')
 #view(atoms)
 
-com = atoms.get_momenta().sum(0)
-print(np.sqrt(np.sum(com*com)))
+#com = atoms.get_momenta().sum(0)
+#print(np.sqrt(np.sum(com*com)))
 
-"""
 calc = GPAW(mode='lcao',
             xc='PBE',
             basis='dzp',
@@ -24,7 +23,7 @@ calc = GPAW(mode='lcao',
 atoms.set_calculator(calc)
 
 dyn = NPT(atoms,
-	  pfactor=None,
+	     pfactor=None,
           externalstress=1,
           temperature=350*kB,
           timestep=0.5*fs,
@@ -33,6 +32,6 @@ dyn = NPT(atoms,
 
 trajectory = Trajectory('nptDyn.traj', 'w', atoms)
 dyn.attach(trajectory.write, interval=1)
-"""
 
-#dyn.run(10)
+
+dyn.run(10)
