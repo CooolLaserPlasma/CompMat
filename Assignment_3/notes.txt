@@ -52,4 +52,5 @@ dvs absolutbeloppet av center_of_mass måste vara mindre är 1e-4
 frågade om felmeddelandet, skulle tydligen vara ok ändå!
 
 körde AIMD simulation (task1.py) kl 11.06
+kör fortfarande 13.59
 
