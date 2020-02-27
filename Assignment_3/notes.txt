@@ -47,3 +47,9 @@ Från dokumentationen av npt (ase.md.npt)
 
 
 dvs absolutbeloppet av center_of_mass måste vara mindre är 1e-4
+---------------------------------------------------------------------------------------------
+2020-02-27
+frågade om felmeddelandet, skulle tydligen vara ok ändå!
+
+körde AIMD simulation (task1.py) kl 11.06
+
