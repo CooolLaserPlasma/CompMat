@@ -24,7 +24,7 @@ atoms.set_calculator(calc)
 
 dyn = NPT(atoms,
 	     pfactor=None,
-          externalstress=1,
+          externalstress=0,
           temperature=350*kB,
           timestep=0.5*fs,
           ttime=20*fs,
