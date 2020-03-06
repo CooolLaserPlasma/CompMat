@@ -36,6 +36,17 @@ timestep = t[1]-t[0]   # timestep used in the AIMD simulation
 n = int(1/timestep)
 
 #%%
+fig, ax = plt.subplots(1, 2, figsize=(10, 4))
+ax[0].plot(t, E_tot)
+ax[0].set_xlabel('time [ps]', fontsize=15)
+ax[0].set_ylabel('energy [eV]', fontsize=15)
+
+t_max = 3000
+ax[1].plot(t[0:t_max], E_tot[0:t_max])
+ax[1].set_xlabel('time [ps]', fontsize=15)
+ax[1].set_ylabel('energy [eV]', fontsize=15)
+
+#%%
 
 config_nr = n               # n+7 has temp 347.5 (T_mean = 345.1)
 
